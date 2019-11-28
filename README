@@ -1,3 +1,5 @@
+[![Build Status](https://drone.yoedistro.org/api/badges/YoeDistro/meta-openembedded/status.svg)](https://drone.yoedistro.org/YoeDistro/meta-openembedded)
+
 Collection of layers for the OE-core universe
 
 Main layer maintainer: Khem Raj <raj.khem@gmail.com>
