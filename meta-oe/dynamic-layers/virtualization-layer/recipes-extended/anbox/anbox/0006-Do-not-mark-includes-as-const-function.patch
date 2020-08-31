@@ -1,0 +1,26 @@
+From e8509e9b6afbe95b32be643ca4722b8e41ff1d7a Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:08:09 -0700
+Subject: [PATCH] Do not mark includes as const function
+
+This uses unique_lock which could alter mutex variable
+hence the function can not be const
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/anbox/network/connections.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/anbox/network/connections.h b/src/anbox/network/connections.h
+index f206a91..eb04726 100644
+--- a/src/anbox/network/connections.h
++++ b/src/anbox/network/connections.h
+@@ -41,7 +41,7 @@ class Connections {
+     connections.erase(id);
+   }
+ 
+-  bool includes(int id) const {
++  bool includes(int id) {
+     std::unique_lock<std::mutex> lock(mutex);
+     return connections.find(id) != connections.end();
+   }

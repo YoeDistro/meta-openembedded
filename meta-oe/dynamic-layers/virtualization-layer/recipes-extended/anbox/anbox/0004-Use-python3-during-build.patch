@@ -1,0 +1,20 @@
+From 571ececa39711537d27bef46e5eb835b980aada2 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:06:32 -0700
+Subject: [PATCH] Use python3 during build
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ scripts/gen-emugl-entries.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/gen-emugl-entries.py b/scripts/gen-emugl-entries.py
+index b88137e..73ede51 100755
+--- a/scripts/gen-emugl-entries.py
++++ b/scripts/gen-emugl-entries.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ 
+ # Copyright 2015 The Android Open Source Project
+ #

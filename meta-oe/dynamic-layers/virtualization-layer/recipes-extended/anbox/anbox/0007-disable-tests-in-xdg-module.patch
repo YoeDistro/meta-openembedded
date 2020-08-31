@@ -1,0 +1,20 @@
+From f0673d9c2168f94662da57ecf7b80eade4e35296 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:09:05 -0700
+Subject: [PATCH] disable tests in xdg module
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ external/xdg/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/external/xdg/CMakeLists.txt b/external/xdg/CMakeLists.txt
+index 249da48..8ad4f1d 100644
+--- a/external/xdg/CMakeLists.txt
++++ b/external/xdg/CMakeLists.txt
+@@ -21,4 +21,4 @@ add_executable(xdg_test xdg_test.cpp)
+ set_property(TARGET xdg_test PROPERTY CXX_STANDARD 11)
+ target_link_libraries(xdg_test xdg ${Boost_LIBRARIES})
+ 
+-add_test(xdg_test xdg_test)
++#add_test(xdg_test xdg_test)

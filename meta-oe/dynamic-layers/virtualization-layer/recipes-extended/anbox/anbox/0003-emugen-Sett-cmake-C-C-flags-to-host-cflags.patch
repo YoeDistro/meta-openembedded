@@ -1,0 +1,26 @@
+From af0369f74181aa150cf304486f97d3b842aadf50 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:05:39 -0700
+Subject: [PATCH] emugen: Sett cmake C/C++ flags to host cflags
+
+This ensures that it does not use cross flags when building it for build
+host
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ external/android-emugl/host/tools/emugen/CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/external/android-emugl/host/tools/emugen/CMakeLists.txt b/external/android-emugl/host/tools/emugen/CMakeLists.txt
+index 8285126..83b8242 100644
+--- a/external/android-emugl/host/tools/emugen/CMakeLists.txt
++++ b/external/android-emugl/host/tools/emugen/CMakeLists.txt
+@@ -1,5 +1,8 @@
+ if (NOT "${HOST_CMAKE_CXX_COMPILER}" STREQUAL "")
+     set (CMAKE_CXX_COMPILER "${HOST_CMAKE_CXX_COMPILER}")
++    set(CMAKE_C_FLAGS "${HOST_CMAKE_C_FLAGS} -Wall")
++    set(CMAKE_CXX_FLAGS "${HOST_CMAKE_CXX_FLAGS} -std=c++11 -Wall")
++    set(CMAKE_CXX_LINK_FLAGS "${HOST_CMAKE_CXX_LINK_FLAGS}")
+ endif()
+ 
+ set(SOURCES

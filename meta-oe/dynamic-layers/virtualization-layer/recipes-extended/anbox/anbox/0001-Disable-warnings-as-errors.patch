@@ -1,0 +1,33 @@
+From aece5874f38bba0e45c85982611182a2424f6787 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:03:10 -0700
+Subject: [PATCH] Disable warnings as errors
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 713df49..9247eda 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -39,7 +39,7 @@ endif()
+ string(TOLOWER "${CMAKE_BUILD_TYPE}" cmake_build_type_lower)
+ 
+ if ("${cmake_build_type_lower}" STREQUAL "release" OR "${cmake_build_type_lower}" STREQUAL "relwithdebinfo")
+-  option(Werror "Treat warnings as errors" ON)
++  option(Werror "Treat warnings as errors" OFF)
+ else()
+   option(Werror "Treat warnings as errors" OFF)
+ endif()
+@@ -136,7 +136,7 @@ set(ANBOX_STATEDIR_FULL "${CMAKE_INSTALL_FULL_LOCALSTATEDIR}/lib/anbox")
+ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/anbox/build/config.h.in
+                ${CMAKE_CURRENT_SOURCE_DIR}/src/anbox/build/config.h)
+ 
+-add_subdirectory(external)
++add_subdirectory(external EXCLUDE_FROM_ALL)
+ add_subdirectory(src)
+ add_subdirectory(tests)
+ add_subdirectory(android)

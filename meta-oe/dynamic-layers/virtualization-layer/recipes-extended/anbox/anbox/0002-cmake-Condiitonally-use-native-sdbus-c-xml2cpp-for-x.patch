@@ -1,0 +1,28 @@
+From 8cf0e87e4d810b0e910f1990a393b650d80931f7 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:04:00 -0700
+Subject: [PATCH] cmake: Condiitonally use native sdbus-c++-xml2cpp for xml2cpp
+
+This helps us define XML2CPP in yocto cross build env
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/CMakeLists.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index b40b7cc..686d4a3 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -59,7 +59,9 @@ add_library(anbox-protobuf
+ target_link_libraries(anbox-protobuf
+     ${PROTOBUF_LITE_LIBRARIES})
+ 
+-set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
++if ("${XML2CPP}" STREQUAL "")
++    set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
++endif()
+ 
+ macro(DBusServer BaseName)
+     add_custom_command(

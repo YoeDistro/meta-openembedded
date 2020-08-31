@@ -1,0 +1,30 @@
+From 91b643a9fd57d994ee8e5b25b2c8a4a81a973a00 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 31 Aug 2020 14:07:21 -0700
+Subject: [PATCH] define sec/usec based on platform wordlength
+
+helps it compile and run on 32-bit arm
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/anbox/input/device.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/anbox/input/device.cpp b/src/anbox/input/device.cpp
+index 9efd347..43de9bb 100644
+--- a/src/anbox/input/device.cpp
++++ b/src/anbox/input/device.cpp
+@@ -59,8 +59,13 @@ void Device::send_events(const std::vector<Event> &events) {
+     // NOTE: A bit dirty but as we're running currently a 64 bit container
+     // struct input_event has a different size. We rebuild the struct here
+     // to reach the correct size.
++#ifdef __LP64__
+     std::uint64_t sec;
+     std::uint64_t usec;
++#else
++    std::uint32_t sec;
++    std::uint32_t usec;
++#endif
+     std::uint16_t type;
+     std::uint16_t code;
+     std::uint32_t value;
