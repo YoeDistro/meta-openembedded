@@ -1,0 +1,39 @@
+From 78cf4d942f91be60a359d62bde608a9644f1db0e Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 12 Nov 2020 19:25:55 -0800
+Subject: [PATCH] Fix build with -fcommon
+
+Move the definition to a source file away from header
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ hping2.h | 2 +-
+ main.c   | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/hping2.h b/hping2.h
+index 27cb0ff..60d4370 100644
+--- a/hping2.h
++++ b/hping2.h
+@@ -357,7 +357,7 @@ struct delaytable_element {
+ 	int status;
+ };
+ 
+-volatile struct delaytable_element delaytable[TABLESIZE];
++extern volatile struct delaytable_element delaytable[TABLESIZE];
+ 
+ /* protos */
+ void	nop(void);				/* nop */
+diff --git a/main.c b/main.c
+index 3aedd86..7bf6464 100644
+--- a/main.c
++++ b/main.c
+@@ -31,6 +31,8 @@
+ #include "hping2.h"
+ 
+ /* globals */
++volatile struct delaytable_element delaytable[TABLESIZE];
++
+ unsigned int
+ 	tcp_th_flags = 0,
+ 	linkhdr_size,				/* physical layer header size */

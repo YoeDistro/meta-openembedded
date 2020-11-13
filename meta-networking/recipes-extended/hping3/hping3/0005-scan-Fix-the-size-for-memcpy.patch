@@ -1,0 +1,25 @@
+From 22dca6150256257f59b0ea6f923cb0015fcddc87 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 12 Nov 2020 20:09:18 -0800
+Subject: [PATCH] scan: Fix the size for memcpy
+
+The size should be of same stuct that is being copied
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ scan.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scan.c b/scan.c
+index ffba002..bbec6f2 100644
+--- a/scan.c
++++ b/scan.c
+@@ -456,7 +456,7 @@ static void receiver(struct portinfo *pi, int childpid)
+ 				continue;
+ 			/* time to copy headers in a safe place */
+ 			p = (unsigned char*) packet+linkhdr_size+iphdrlen;
+-			memcpy(&icmp, p, sizeof(subtcp));
++			memcpy(&icmp, p, sizeof(icmp));
+ 			p += sizeof(icmp);
+ 			memcpy(&subip, p, sizeof(ip));
+ 			p += sizeof(ip);

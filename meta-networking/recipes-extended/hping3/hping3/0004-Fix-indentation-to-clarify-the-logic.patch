@@ -1,0 +1,27 @@
+From 846ea5e09fecd6fd61c62854c8bc7d36de2c7427 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 12 Nov 2020 20:07:05 -0800
+Subject: [PATCH] Fix indentation to clarify the logic
+
+This is needed with newer compilers
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ rtt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/rtt.c b/rtt.c
+index e06343d..57fc309 100644
+--- a/rtt.c
++++ b/rtt.c
+@@ -45,8 +45,8 @@ int rtt(int *seqp, int recvport, float *ms_delay)
+ 				tablepos = i;
+ 				break;
+ 			}
+-			if (i != TABLESIZE)
+-				*seqp = delaytable[i].seq;
++		if (i != TABLESIZE)
++			*seqp = delaytable[i].seq;
+ 	}
+ 
+ 	if (tablepos != -1)

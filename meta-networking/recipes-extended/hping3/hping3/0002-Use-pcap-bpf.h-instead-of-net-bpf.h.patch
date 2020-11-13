@@ -1,0 +1,41 @@
+From 3cf74468916304a9ea8113c9880783ff9153b4a7 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 12 Nov 2020 19:26:52 -0800
+Subject: [PATCH] Use pcap-bpf.h instead of net/bpf.h
+
+This is the right header on linux
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ libpcap_stuff.c | 2 +-
+ script.c        | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libpcap_stuff.c b/libpcap_stuff.c
+index 26f9993..4d98395 100644
+--- a/libpcap_stuff.c
++++ b/libpcap_stuff.c
+@@ -16,8 +16,8 @@
+ #include <string.h>
+ #include <stdlib.h>
+ #include <sys/ioctl.h>
+-#include <net/bpf.h>
+ #include <pcap.h>
++#include <pcap-bpf.h>
+ 
+ #include "globals.h"
+ 
+diff --git a/script.c b/script.c
+index 124370c..8208f29 100644
+--- a/script.c
++++ b/script.c
+@@ -23,8 +23,8 @@
+ #include <sched.h>
+ 
+ #include <sys/ioctl.h>
+-#include <net/bpf.h>
+ #include <pcap.h>
++#include <pcap-bpf.h>
+ 
+ #include "release.h"
+ #include "hping2.h"
