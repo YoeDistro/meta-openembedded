@@ -1,3 +1,4 @@
+[![Yoe Distro CI](https://github.com/YoeDistro/meta-openembedded/actions/workflows/yoe.yml/badge.svg?branch=yoe%2Fmut)](https://github.com/YoeDistro/meta-openembedded/actions/workflows/yoe.yml)
 Collection of layers for the OE-core universe
 
 Main layer maintainer: Khem Raj <raj.khem@gmail.com>
