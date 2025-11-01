@@ -10,11 +10,11 @@ SRC_URI = "git://github.com/leethomason/tinyxml2.git;branch=master;protocol=http
            file://run-ptest"
 
 
-inherit meson ptest
+inherit cmake ptest
 
-EXTRA_OEMESON += " \
-    ${@bb.utils.contains('PTEST_ENABLED', '1', '-Dtests=true', '', d)} \
-    -Ddefault_library=both \
+EXTRA_OECMAKE += " \
+    ${@bb.utils.contains('PTEST_ENABLED', '1', '-Dtinyxml2_BUILD_TESTING=ON', '', d)} \
+    -DBUILD_SHARED_LIBS=ON \
 "
 
 CXXFLAGS:append:libc-musl = " -D_LARGEFILE64_SOURCE"
