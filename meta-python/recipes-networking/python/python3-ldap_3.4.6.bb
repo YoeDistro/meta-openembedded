@@ -13,7 +13,7 @@ PYPI_PACKAGE = "python_ldap"
 
 inherit pypi python_setuptools_build_meta
 
-SRC_URI[sha256sum] = "b2f6ef1c37fe2c6a5a85212efe71311ee21847766a7d45fcb711f3b270a5f79a"
+SRC_URI[sha256sum] = "83d6b65c7cbe627d81e556d0d03f3f450e3ac35ba9c1b6011f0097ac92effeb1"
 
 do_configure:prepend() {
     sed -i -e 's:^library_dirs =.*::' \
