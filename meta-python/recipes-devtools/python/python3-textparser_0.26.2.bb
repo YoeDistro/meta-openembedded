@@ -3,11 +3,13 @@ HOMEPAGE = "https://github.com/eerimoq/textparser"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fe9942a8bba5458a9dbd11277bc347ad"
 
-SRC_URI[sha256sum] = "56f708e75aa9d002adb76d823ba6ef166d7ecec1e3e4ca4c1ca103f817568335"
+SRC_URI[sha256sum] = "859825876a9c38f7c313ee1cf991a59d6b56232a9f67be6dcc0a758d84654fba"
 
 PYPI_PACKAGE = "textparser"
 
-inherit pypi setuptools3
+DEPENDS += "python3-setuptools-scm-native"
+
+inherit pypi python_setuptools_build_meta
 
 CLEANBROKEN = "1"
 
