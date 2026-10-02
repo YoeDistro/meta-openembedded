@@ -20,11 +20,10 @@ DEPENDS = " \
 
 inherit gnomebase gsettings gettext
 
-SRC_URI[archive.sha256sum] = "2aebaa2d474cc31507c87a7bbbdb3e16dbe26b1cfef9f206457f3f9df43558b0"
+SRC_URI[archive.sha256sum] = "dfe7adc5876ef0670e7eba2907799bdbb8875ce58bb4208e1a52169bd16a47ca"
 SRC_URI += "file://0001-meson-allow-setting-the-paths-to-ssh-agent-and-ssh-add-by-option.patch \
             file://0002-gkd-secret-service-destroy-the-dispatch-table-before.patch \
             file://0003-gkd-secret-unlock-do-not-use-the-service-after-dispo.patch \
-            file://0004-gkd-secret-session-drop-the-duplicate-session-unref.patch \
             "
 
 PACKAGECONFIG ??= " \
