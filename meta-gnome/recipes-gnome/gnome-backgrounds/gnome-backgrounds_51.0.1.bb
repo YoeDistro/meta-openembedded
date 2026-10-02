@@ -6,7 +6,10 @@ SECTION = "x11/gnome"
 
 inherit gnomebase gettext allarch
 
-SRC_URI[archive.sha256sum] = "5811d24118d78f41b66c616efb1094c20507cb546e484dca4963fe738a4ba7db"
+def gnome_verdir(v):
+    return oe.utils.trim_version(v, 1)
+
+SRC_URI[archive.sha256sum] = "ec50534d7749be0e1503c5504f826c61d1460d2b41cb84518fa6b2f5547d1e1e"
 
 FILES:${PN} += " \
     ${datadir}/backgrounds \
