@@ -3,7 +3,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1"
 SECTION = "x11/gnome"
 
-SRC_URI[archive.sha256sum] = "16a47e49a58156dbb96578e1708325299e4c19eea9be128d5bd12fd0963d6c36"
+SRC_URI[archive.sha256sum] = "e65c1b7867f836faad9f9ee04acf5c5a6cae2bbc784833fe093207e0cb590248"
 
 DEPENDS = "dbus glib-2.0 intltool-native"
 
