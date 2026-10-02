@@ -519,6 +519,11 @@ do_configure[postfuncs] += "write_manifest"
 
 do_fitimage () {
     if [ "${FITIMAGE_SIGN}" = "1" ]; then
+        case " ${FITIMAGE_MKIMAGE_EXTRA_ARGS} " in
+        *" --engine "*|*" --engine="*|*" -N "*)
+            bbfatal "FITIMAGE_MKIMAGE_EXTRA_ARGS: OpenSSL engines are no longer supported, see updated usage in fitimage.bbclass."
+            ;;
+        esac
         uboot-mkimage ${FITIMAGE_MKIMAGE_EXTRA_ARGS} \
             -k "${FITIMAGE_SIGN_KEYDIR}" -r \
             -f "${B}/manifest.its" \
