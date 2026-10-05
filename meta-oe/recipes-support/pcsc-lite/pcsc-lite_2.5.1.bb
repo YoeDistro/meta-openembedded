@@ -41,7 +41,7 @@ FILES:${PN} = "${sbindir}/pcscd \
                ${datadir}/polkit-1 \
                ${systemd_system_unitdir}/pcscd.service \
                ${systemd_system_unitdir}/pcscd.socket \
-               ${libdir}/sysusers.d \
+               ${nonarch_libdir}/sysusers.d \
                ${exec_prefix}/sysusers.d \
                ${sysconfdir}/default/pcscd"
 FILES:${PN}-lib = "${libdir}/libpcsclite*${SOLIBS}"
