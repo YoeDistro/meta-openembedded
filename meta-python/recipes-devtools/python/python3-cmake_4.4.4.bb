@@ -10,7 +10,7 @@ DEPENDS = "ninja-native cmake-native python3-scikit-build-native python3-scikit-
 PYPI_ARCHIVE_NAME_PREFIX = "pypi-"
 
 inherit pypi python_setuptools_build_meta
-SRC_URI[sha256sum] = "b0c2703ec0a624649dd184c0ac5ee4c7f5fe5ef35eb82f9da44f5a0903adb2b6"
+SRC_URI[sha256sum] = "f337d18e33b116cabae9a7a8ff423fc0bc3f389da0acefeb724e1397128dcc34"
 
 SRC_URI += " \
 	file://CMakeLists.txt \
