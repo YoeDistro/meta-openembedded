@@ -11,7 +11,7 @@ CVE_PRODUCT = "kmscon"
 SECTION = "graphics"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING;md5=6d4602d249f8a3401040238e98367d9e"
+LIC_FILES_CHKSUM = "file://COPYING;md5=e88b340bd6389ec41d4cf634a770a771"
 
 DEPENDS = "\
     libtsm \
@@ -21,11 +21,11 @@ DEPENDS = "\
 "
 
 SRC_URI = "git://github.com/kmscon/kmscon;protocol=https;branch=main;tag=v${PV}"
-SRCREV = "c9d0e23336c6bb7645a1f5f48a4a82f1d5a589d9"
+SRCREV = "68fc8e1b2601e816e3a4ef95e3d8e700677509b9"
 
 SRC_URI += " \
-    file://0001-terminal-open-the-pty-only-once-a-display-is-attached.patch \
-    file://0002-uterm_monitor-treat-platform-display-controllers-as-primary-GPUs.patch \
+    file://0001-uterm-treat-platform-display-controllers-as-primary-GPUs.patch \
+    file://0002-vt_libseat-Fix-build-error-due-to-logging-changes.patch \
 "
 
 inherit meson pkgconfig systemd
