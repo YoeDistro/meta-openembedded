@@ -1,15 +1,15 @@
 SUMMARY = "Canonical libwebsockets.org websocket library"
 HOMEPAGE = "https://libwebsockets.org/"
 LICENSE = "Apache-2.0 AND BSD-3-Clause AND MIT AND OFL-1.1 AND Zlib"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=b5d391cc7929bcba238f9ba6805f7574"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=d1d99ab4e0f1be7992a891906e47add2"
 
 DEPENDS = "zlib"
 DEPENDS:append:class-native = " libcap-native"
 
-SRCREV = "fbb0baf6af9c4324f0f1591734c78b0089b599d4"
+SRCREV = "2491a1b101283cf7886d05033345b7e821825319"
+SRCBRANCH = "v${@oe.utils.trim_version("${PV}", 2)}-stable"
 SRC_URI = " \
-    git://github.com/warmcat/libwebsockets.git;protocol=https;branch=v4.5-stable;tag=v${PV} \
-    file://CVE-2026-10650.patch \
+    git://github.com/warmcat/libwebsockets.git;protocol=https;branch=${SRCBRANCH};tag=v${PV} \
 "
 
 UPSTREAM_CHECK_URI = "https://github.com/warmcat/${BPN}/releases"
@@ -20,15 +20,19 @@ inherit cmake pkgconfig
 PACKAGECONFIG ?= "libuv client server http2 ssl ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)}"
 PACKAGECONFIG[client] = "-DLWS_WITHOUT_CLIENT=OFF,-DLWS_WITHOUT_CLIENT=ON,"
 PACKAGECONFIG[http2] = "-DLWS_WITH_HTTP2=ON,-DLWS_WITH_HTTP2=OFF,"
+PACKAGECONFIG[http3] = "-DLWS_WITH_HTTP3=ON -DLWS_ROLE_QUIC=ON,-DLWS_WITH_HTTP3=OFF -DLWS_ROLE_QUIC=OFF,gnutls"
 PACKAGECONFIG[ipv6] = "-DLWS_IPV6=ON,-DLWS_IPV6=OFF,"
 PACKAGECONFIG[libevent] = "-DLWS_WITH_LIBEVENT=ON,-DLWS_WITH_LIBEVENT=OFF,libevent"
 PACKAGECONFIG[libev] = "-DLWS_WITH_LIBEV=ON,-DLWS_WITH_LIBEV=OFF,libev"
 PACKAGECONFIG[libuv] = "-DLWS_WITH_LIBUV=ON,-DLWS_WITH_LIBUV=OFF,libuv"
 PACKAGECONFIG[server] = "-DLWS_WITHOUT_SERVER=OFF,-DLWS_WITHOUT_SERVER=ON,"
-PACKAGECONFIG[ssl] = "-DLWS_WITH_SSL=ON,-DLWS_WITH_SSL=OFF,openssl libcap"
+PACKAGECONFIG[ssl] = "-DLWS_WITH_SSL=ON,-DLWS_WITH_SSL=OFF,${SSL_DEPENDENCY} libcap"
+PACKAGECONFIG[gnutls] = "-DLWS_WITH_GNUTLS=ON,-DLWS_WITH_GNUTLS=OFF,gnutls"
 PACKAGECONFIG[static] = "-DLWS_WITH_STATIC=ON,-DLWS_WITH_STATIC=OFF -DLWS_LINK_TESTAPPS_DYNAMIC=ON,"
 PACKAGECONFIG[systemd] = "-DLWS_WITH_SDEVENT=ON,-DLWS_WITH_SDEVENT=OFF,systemd"
 PACKAGECONFIG[examples] = "-DLWS_WITH_MINIMAL_EXAMPLES=ON,-DLWS_WITH_MINIMAL_EXAMPLES=OFF"
+
+SSL_DEPENDENCY = "${@bb.utils.contains('PACKAGECONFIG', 'gnutls', '', 'openssl', d)}"
 
 python __anonymous() {
   if bb.utils.contains('PACKAGECONFIG', 'systemd', True, False, d) and not bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d):
@@ -36,9 +40,9 @@ python __anonymous() {
 }
 
 EXTRA_OECMAKE += " \
-    -DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')} \
     -DLWS_WITHOUT_TESTAPPS=ON \
     -DLWS_HAVE_HMAC_CTX_new=ON \
+    -DDISABLE_WERROR=ON \
 "
 
 do_compile:prepend() {
