@@ -27,13 +27,6 @@ inherit cml1 python3native
 
 EXTRA_OECMAKE += "-DLV_BUILD_USE_KCONFIG=ON"
 
-LVGL_FLAGS += " \
-    ${@bb.utils.contains('PACKAGECONFIG', 'drm', '-I${STAGING_INCDIR}/libdrm', '', d)} \
-    ${@bb.utils.contains('PACKAGECONFIG', 'freetype', '-I${STAGING_INCDIR}/freetype2', '', d)} \
-"
-CFLAGS += "${LVGL_FLAGS}"
-CXXFLAGS += "${LVGL_FLAGS}"
-
 KCONFIG_CONFIG_ROOTDIR ?= "${S}"
 KCONFIG_FILE ?= "${KCONFIG_CONFIG_ROOTDIR}/Kconfig"
 export KCONFIG_CONFIG ?= "${KCONFIG_CONFIG_ROOTDIR}/.config"
